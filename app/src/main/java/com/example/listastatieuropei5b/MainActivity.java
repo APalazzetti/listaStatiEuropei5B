@@ -2,8 +2,11 @@ package com.example.listastatieuropei5b;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -32,5 +35,17 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
+        listaf.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> AdapterView, View view, int i, long l) {
+                String titolo = (String) listaf.getItemAtPosition(i);
+                Toast.makeText(getApplicationContext(),titolo,Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(getApplicationContext(),MainActivity2.class);
+                intent.putExtra("title",titolo);
+                startActivity(intent);
+                Log.d("elemento_selezionato","hai cliccato sul"+i+"elemento ");
+            }
+        });
     }
 }
